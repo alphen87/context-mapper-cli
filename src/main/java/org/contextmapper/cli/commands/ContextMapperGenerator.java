@@ -1,14 +1,14 @@
 package org.contextmapper.cli.commands;
 
-import org.contextmapper.dsl.generator.ContextMapGenerator;
-import org.contextmapper.dsl.generator.GenericContentGenerator;
-import org.contextmapper.dsl.generator.PlantUMLGenerator;
+import org.contextmapper.dsl.generator.*;
 import org.eclipse.xtext.generator.IGenerator2;
 
 public enum ContextMapperGenerator {
 
     CONTEXT_MAP("context-map", "Graphical DDD Context Map"),
     PLANT_UML("plantuml", "PlantUML class-, component-, and state diagrams."),
+    SKETCH_MINER("sketch-miner", "Generate bpmn sketch miner text"),
+    SKETCH_MINER_LINK("sketch-miner-link", "Generate bpmn sketch miner link"),
     GENERIC("generic", "Generate generic text with Freemarker template");
 
     private final String name;
@@ -49,6 +49,10 @@ public enum ContextMapperGenerator {
             return new ContextMapGenerator();
         if (this == PLANT_UML)
             return new PlantUMLGenerator();
+        if (this == SKETCH_MINER)
+            return new SketchMinerGenerator();
+        if (this == SKETCH_MINER_LINK)
+            return new SketchMinerLinkGenerator();
         return new GenericContentGenerator();
     }
 
